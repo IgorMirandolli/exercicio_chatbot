@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1" encoding="UTF-8">
+    <category>
+        <pattern>OI</pattern>
+        <template>
+            <random>
+                <li>Ola, como vai voce?</li>
+                <li>Oi. Em que posso ajudar?</li>
+                <li>Beleza. Pode falar comigo.</li>
+                <li>Ola, tudo certo?</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+        <pattern>OLA</pattern>
+        <template><srai>OI</srai></template>
+    </category>
+
+    <category>
+        <pattern>OI *</pattern>
+        <template><srai>OI</srai></template>
+    </category>
+
+    <category>
+        <pattern>OLA *</pattern>
+        <template><srai>OI</srai></template>
+    </category>
+
+    <category>
+        <pattern>BOM DIA</pattern>
+        <template>Bom dia. Espero que seu dia esteja indo bem.</template>
+    </category>
+
+    <category>
+        <pattern>BOA TARDE</pattern>
+        <template>Boa tarde. Como posso ajudar?</template>
+    </category>
+
+    <category>
+        <pattern>BOA NOITE</pattern>
+        <template>Boa noite. Estou pronto para conversar.</template>
+    </category>
+
+    <category>
+        <pattern>COMO VAI VOCE</pattern>
+        <template>
+            <random>
+                <li>Vou bem, obrigado por perguntar.</li>
+                <li>Tudo bem por aqui.</li>
+                <li>Tudo em ordem. E com voce?</li>
+                <li>Muito bem. Como posso ajudar?</li>
+            </random>
+        </template>
+    </category>
+
+    <category>
+        <pattern>QUEM E VOCE</pattern>
+        <template>Eu sou um chatbot simples feito com AIML e PyAIML3.</template>
+    </category>
+
+    <category>
+        <pattern>O QUE VOCE FAZ</pattern>
+        <template>Eu respondo perguntas usando uma base de conhecimento escrita em AIML.</template>
+    </category>
+
+    <category>
+        <pattern>AJUDA</pattern>
+        <template>Voce pode dizer OI, COMO VAI VOCE, MEU NOME E Ana, QUAL E O MEU NOME ou POSSO COMPRAR UMA PASSAGEM PARA RECIFE.</template>
+    </category>
+
+    <category>
+        <pattern>MEU NOME E *</pattern>
+        <template>
+            E um prazer te conhecer.
+            <think><set name="userName"><star/></set></think>
+        </template>
+    </category>
+
+    <category>
+        <pattern>QUAL E O MEU NOME</pattern>
+        <template>
+            <condition name="userName">
+                <li value="">Voce ainda nao me disse seu nome.</li>
+                <li>Seu nome e <get name="userName"/>.</li>
+            </condition>
+        </template>
+    </category>
+
+    <category>
+        <pattern>EU GOSTO DE *</pattern>
+        <template>Legal. Tambem acho interessante falar sobre <star/>.</template>
+    </category>
+
+    <category>
+        <pattern>QUAL O CAMINHO ATE SUPERMERCADO</pattern>
+        <template><srai>COMO EU CHEGO AO SUPERMERCADO</srai></template>
+    </category>
+
+    <category>
+        <pattern>QUAL O CAMINHO ATE UNIVERSIDADE</pattern>
+        <template><srai>COMO EU CHEGO A UNIVERSIDADE</srai></template>
+    </category>
+
+    <category>
+        <pattern>COMO EU CHEGO AO SUPERMERCADO</pattern>
+        <template>Siga pela avenida principal e vire na primeira rua a direita.</template>
+    </category>
+
+    <category>
+        <pattern>COMO EU CHEGO A UNIVERSIDADE</pattern>
+        <template>Siga pela rua principal por aproximadamente 2 km.</template>
+    </category>
+
+    <category>
+        <pattern>POSSO COMPRAR UMA PASSAGEM DE AVIAO</pattern>
+        <template>Sim, voce pode comprar uma passagem de aviao.</template>
+    </category>
+
+    <category>
+        <pattern>POSSO COMPRAR UMA PASSAGEM PARA *</pattern>
+        <template>
+            Sim, voce pode comprar uma passagem para <star/>.
+            <think>
+                <set name="userDestination"><star/></set>
+                <set name="topic">PAGAMENTO</set>
+            </think>
+            <srai>COMO POSSO PAGAR</srai>
+        </template>
+    </category>
+
+    <category>
+        <pattern>QUAL E O MEU DESTINO</pattern>
+        <template>
+            <condition name="userDestination">
+                <li value="">Voce ainda nao informou um destino.</li>
+                <li>Seu destino e <get name="userDestination"/>.</li>
+            </condition>
+        </template>
+    </category>
+
+    <topic name="PAGAMENTO">
+        <category>
+            <pattern>COMO POSSO PAGAR</pattern>
+            <template>Voce pode pagar em dinheiro, pix ou cartao de credito.</template>
+        </category>
+
+        <category>
+            <pattern>POSSO PAGAR COM CARTAO</pattern>
+            <template>Sim. Para a passagem para <get name="userDestination"/>, o cartao de credito e aceito.</template>
+        </category>
+    </topic>
+
+    <category>
+        <pattern>*</pattern>
+        <template>
+            <random>
+                <li>Eu nao entendi. Pode tentar perguntar de outro jeito?</li>
+                <li>Ainda nao sei responder isso.</li>
+                <li>Minha base de conhecimento ainda e pequena. Tente digitar AJUDA.</li>
+            </random>
+        </template>
+    </category>
+</aiml>
